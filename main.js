@@ -2,6 +2,7 @@
 const input = document.querySelector(".display");
 const numbers = document.querySelectorAll(".number");
 const calculate = document.querySelector(".calculate");
+const addSignDisplay = document.querySelector(".addSignDisplay");
 
 let startValue = 0;
 let a = "";
@@ -18,6 +19,7 @@ function clearAll() {
   b = "";
   d = "";
   sign = "";
+  addSignDisplay.value = "";
 }
 
 const arrNumbers = [
@@ -37,13 +39,6 @@ const arrNumbers = [
 const arrSign = ["/", "*", "+", "-", "√", "%"];
 const arrAddSign = ["MR", "M-", "M+", "→", "MC", "AC"];
 
-input.addEventListener("input", () => {
-  if (input.value.length > 12) {
-    input.value = input.value.slice(0, 12);
-    console.log(input.value.length);
-    return input.value;
-  }
-});
 calculate.addEventListener("click", onCalculateClick);
 
 function onCalculateClick(e) {
@@ -89,7 +84,8 @@ function onCalculateClick(e) {
     switch (sign) {
       case "/":
         if (b === "0" || b === "00") {
-          input.value = "Error";
+          addSignDisplay.value = "Err";
+          input.value = "0";
           c = "";
           return;
         }
@@ -119,6 +115,7 @@ function onCalculateClick(e) {
         } else {
           input.value = 0;
         }
+        addSignDisplay.value = key;
         break;
       case "M-":
         if (memory !== "") {
@@ -127,6 +124,7 @@ function onCalculateClick(e) {
           memory = c;
         }
         clearAll();
+        addSignDisplay.value = key;
         break;
       case "M+":
         if (memory !== "") {
@@ -135,12 +133,15 @@ function onCalculateClick(e) {
           memory = c;
         }
         clearAll();
+        addSignDisplay.value = key;
         break;
       case "→":
         input.value = input.value.slice(0, -1);
+        if (input.value.length <= 0) input.value = 0;
         break;
       case "MC":
         memory = "";
+        addSignDisplay.value = "";
       case "AC":
         finish = false;
         input.value = startValue;
