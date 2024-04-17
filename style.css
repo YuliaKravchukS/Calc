@@ -22,6 +22,7 @@ body {
 }
 .container-display {
   display: flex;
+  width: 100%;
 }
 .addSignDisplay {
   padding: 10px;
@@ -34,6 +35,8 @@ body {
   border: none;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   overflow: hidden;
   outline: none;
   color: #4c4b4b;
@@ -42,7 +45,7 @@ body {
 .display {
   margin: 0 0 15px;
   padding: 10px 10px 10px 5px;
-  width: 100%;
+  width: calc(100%-60px);
   height: 60px;
   text-align: end;
   padding: 10px;
@@ -51,6 +54,8 @@ body {
   border: none;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   overflow: hidden;
   outline: none;
 }
