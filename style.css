@@ -45,7 +45,7 @@ body {
 .display {
   margin: 0 0 15px;
   padding: 10px 10px 10px 5px;
-  width: calc(100%-60px);
+  width: calc(100% - 60px);
   height: 60px;
   text-align: end;
   padding: 10px;
