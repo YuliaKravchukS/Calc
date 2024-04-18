@@ -60,7 +60,11 @@ function onCalculateClick(e) {
 
   if (arrNumbers.includes(key)) {
     if (b === "" && sign === "") {
-      a += key;
+      if (key === "." && a === "") {
+        a = "0" + key;
+      } else {
+        a += key;
+      }
       input.value = a;
     } else if (a !== "" && b !== "" && finish) {
       a = c;
@@ -73,7 +77,8 @@ function onCalculateClick(e) {
     }
     return;
   }
-
+  if (key === "." && (a.includes(key) || a.includes(key))) {
+  }
   if (arrSign.includes(key)) {
     sign = key;
     input.value = sign;
