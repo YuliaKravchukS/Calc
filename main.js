@@ -15,7 +15,7 @@ let finish = false;
 input.value = startValue;
 
 function clearAll() {
-  a = "";
+  // a = "";
   b = "";
   d = "";
   sign = "";
@@ -42,6 +42,7 @@ const arrAddSign = ["MR", "M-", "M+", "→", "MC", "AC"];
 calculate.addEventListener("click", onCalculateClick);
 
 function onCalculateClick(e) {
+  let result;
   if (e.target.nodeName !== "BUTTON") return;
   const key = e.target.textContent;
 
@@ -57,28 +58,38 @@ function onCalculateClick(e) {
     a = sqrt;
     return;
   }
-
+  console.log(a, sign, b);
   if (arrNumbers.includes(key)) {
     if (b === "" && sign === "") {
       if (key === "." && a === "") {
         a = "0" + key;
+      } else if (key === "." && a.toString().includes(key)) {
+        return;
       } else {
         a += key;
       }
       input.value = a;
+    } else if (a !== "") {
+      if (key === "." && b === "") {
+        b = "0" + key;
+      } else if (key === "." && b.toString().includes(key)) {
+        return;
+      } else {
+        b += key;
+      }
+      input.value = b;
     } else if (a !== "" && b !== "" && finish) {
-      a = c;
+      // a = c;
       b = key;
       finish = false;
       input.value = b;
-    } else {
-      b += key;
-      input.value = b;
     }
-    return;
+    // else {
+    //   b += key;
+    //   input.value = b;
+    // }
   }
-  if (key === "." && (a.includes(key) || a.includes(key))) {
-  }
+
   if (arrSign.includes(key)) {
     sign = key;
     input.value = sign;
@@ -91,24 +102,24 @@ function onCalculateClick(e) {
         if (b === "0" || b === "00") {
           addSignDisplay.value = "Err";
           input.value = "0";
-          c = "";
+          a = "";
           return;
         }
-        c = a / b;
+        a = a / b;
         break;
       case "*":
-        c = a * b;
+        a = a * b;
         break;
       case "-":
-        c = a - b;
+        a = a - b;
         break;
       case "+":
-        c = a + b;
+        a = +a + +b;
         break;
     }
-    a = c;
+    b = "";
     finish = true;
-    input.value = c;
+    input.value = a;
   }
   if (arrAddSign.includes(key)) {
     switch (key) {
@@ -124,18 +135,18 @@ function onCalculateClick(e) {
         break;
       case "M-":
         if (memory !== "") {
-          memory -= c;
+          memory -= a;
         } else {
-          memory = c;
+          memory = a;
         }
         clearAll();
         addSignDisplay.value = key;
         break;
       case "M+":
         if (memory !== "") {
-          memory += c;
+          memory += a;
         } else {
-          memory = c;
+          memory = a;
         }
         clearAll();
         addSignDisplay.value = key;
@@ -147,10 +158,11 @@ function onCalculateClick(e) {
       case "MC":
         memory = "";
         addSignDisplay.value = "";
+        break;
       case "AC":
         finish = false;
         input.value = startValue;
-        c = "";
+        // a = "";
         clearAll();
         memory = "";
         break;
