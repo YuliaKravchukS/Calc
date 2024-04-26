@@ -15,11 +15,11 @@ let finish = false;
 input.value = startValue;
 
 function clearAll() {
-  // a = "";
+  a = "";
   b = "";
   d = "";
-  sign = "";
   addSignDisplay.value = "";
+  sign = "";
 }
 
 const arrNumbers = [
@@ -48,8 +48,11 @@ function onCalculateClick(e) {
 
   if (key === "%") {
     const percent = (a * b) / 100;
+    console.log("a: ", a);
     input.value = percent;
     b = percent;
+    console.log("b: ", b);
+
     return;
   }
   if (key === "√") {
@@ -58,11 +61,13 @@ function onCalculateClick(e) {
     a = sqrt;
     return;
   }
-  console.log(a, sign, b);
+
   if (arrNumbers.includes(key)) {
     if (b === "" && sign === "") {
       if (key === "." && a === "") {
         a = "0" + key;
+      } else if (key === "00" && a === "") {
+        a = "0";
       } else if (key === "." && a.toString().includes(key)) {
         return;
       } else {
@@ -72,6 +77,8 @@ function onCalculateClick(e) {
     } else if (a !== "") {
       if (key === "." && b === "") {
         b = "0" + key;
+      } else if (key === "00" && b === "") {
+        b = "0";
       } else if (key === "." && b.toString().includes(key)) {
         return;
       } else {
@@ -79,7 +86,7 @@ function onCalculateClick(e) {
       }
       input.value = b;
     } else if (a !== "" && b !== "" && finish) {
-      // a = c;
+      a = c;
       b = key;
       finish = false;
       input.value = b;
@@ -96,30 +103,41 @@ function onCalculateClick(e) {
     return;
   }
 
+  if (key === "=" && sign === "") {
+    return (input.value = a);
+  }
+
   if (key === "=") {
+    d = Math.max(a.length, b.length);
     switch (sign) {
       case "/":
         if (b === "0" || b === "00") {
           addSignDisplay.value = "Err";
           input.value = "0";
-          a = "";
+          c = "";
           return;
         }
-        a = a / b;
+        c = a / b;
         break;
       case "*":
-        a = a * b;
+        c = a * b;
         break;
       case "-":
-        a = a - b;
+        c = a - b;
+
         break;
       case "+":
-        a = +a + +b;
+        c = +a + +b;
         break;
     }
+    while (c.length > 1 && с[с.length - 1] === "0" && с[с.length - 2] !== ".") {
+      с = parseFloat(c).toFixed(d).pop();
+      return c;
+    }
+    a = c;
     b = "";
     finish = true;
-    input.value = a;
+    input.value = c;
   }
   if (arrAddSign.includes(key)) {
     switch (key) {
@@ -137,7 +155,7 @@ function onCalculateClick(e) {
         if (memory !== "") {
           memory -= a;
         } else {
-          memory = a;
+          memory = 0 - a;
         }
         clearAll();
         addSignDisplay.value = key;
@@ -162,7 +180,7 @@ function onCalculateClick(e) {
       case "AC":
         finish = false;
         input.value = startValue;
-        // a = "";
+        c = "";
         clearAll();
         memory = "";
         break;

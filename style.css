@@ -17,8 +17,6 @@ body {
 .container {
   padding: 15px;
   width: 100%;
-  position: absolute;
-  bottom: 10px;
 }
 .container-display {
   display: flex;
@@ -135,31 +133,13 @@ body {
   box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
 }
 
-@media screen and (min-width: 765px) {
-  body {
-    background-image: url("./image/desk.jpg");
-    position: relative;
-  }
-}
-
 @media screen and (min-width: 1024px) {
-  body {
-    justify-content: flex-end;
-  }
   .calculate {
-    bottom: 50px;
     width: 350px;
-    margin-right: 80px;
-  }
-  .container {
-    bottom: 50px;
+    /* margin-right: 80px; */
   }
 }
-
 @media screen and (min-width: 1440px) {
-  .container {
-    bottom: 100px;
-  }
   .calculate {
     height: 450px;
   }
