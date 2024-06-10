@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("./image/mobBgk.jpg");
+  background-image: url("./image/modern-artist-concept-with-top-view-desk.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   color: #0c0c0c;
@@ -58,13 +58,13 @@ body {
   outline: none;
 }
 .calculate {
-  background-color: beige;
-  width: 280px;
+  background-color: #ffff0f;
   padding: 15px;
   border: 1px solid darkgray;
   border-radius: 15px;
   box-shadow: 5px 5px 17px 3px #000000;
   margin: 0 auto;
+  width: 275px;
 }
 .keys {
   display: flex;
@@ -133,7 +133,7 @@ body {
   box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .calculate {
     width: 350px;
     /* margin-right: 80px; */

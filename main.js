@@ -162,16 +162,26 @@ function onCalculateClick(e) {
         break;
       case "M+":
         if (memory !== "") {
-          memory += a;
+          memory = parseFloat(memory) + parseFloat(a);
+          console.log("memory: ", memory);
+          console.log("a: ", a);
         } else {
           memory = a;
+          console.log("a: ", a);
+          console.log("memory2: ", memory);
         }
         clearAll();
         addSignDisplay.value = key;
         break;
       case "→":
         input.value = input.value.slice(0, -1);
-        if (input.value.length <= 0) input.value = 0;
+        a = input.value;
+
+        if (input.value.length <= 0) {
+          a = "";
+          input.value = 0;
+        }
+
         break;
       case "MC":
         memory = "";
